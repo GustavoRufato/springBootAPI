@@ -16,8 +16,6 @@ public class userService {
     @Autowired
     private userRepository userrepository;
 
-        
-
     public User getUserById(Long id) {
         Optional<User> user = this.userrepository.findById(id);
         return user.orElseThrow(() -> new RuntimeException(
@@ -40,11 +38,15 @@ public class userService {
 
     public void deleteUser(Long id) {
         getUserById(id);
-        try {
-            this.userrepository.deleteById(id);
-        } catch (Exception e) {
-            throw new RuntimeException("Não é possivel excluir, pois há entidades relacionados");
-            
+
+        try{
+           this.userrepository.deleteById(id); 
+        } 
+        catch(Exception e){
+            throw new RuntimeException("Não é possivel excluir, pois não ha entidades relacionadas");
         }
     }
+
+    
+    
 }

@@ -10,10 +10,8 @@ import com.example.SpringBootAPi.Models.User;
 
 public interface userRepository extends JpaRepository<User, Long> {
 
-    List<User> findUserBy_id(Long id);
-
-    //@Query(value = "SELECT u FROM User u WHERE u.user.id = :id ")
-    //List<User> findByUser_Id(@Param("id") Long id);
+    @Query(value = "SELECT u FROM User u WHERE u.id = :id ")
+    List<User> findByUserId(@Param("id") Long id);
 
     //@Query(value = "SELECT * FROM User u WHERE u.user_id = :id, nativerQuery = true")
     //List<User> findByUser_Id(@Param("id") Long id);
